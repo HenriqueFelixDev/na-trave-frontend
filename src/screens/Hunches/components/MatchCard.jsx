@@ -8,10 +8,12 @@ import { MatchCardForm } from './MatchCardForm'
 import { formatTimeTitle } from '~/domain/utils/dateUtils'
 import { hunchesApi } from '~/domain/api'
 
-function getCardStatus({homeTeamScore, awayTeamScore, hunch}) {
+function getCardStatus(match, hunch) {
     // Quando o jogo já terminou e o resultado já foi cadastrado
     // no banco de dados
-    const gameFinished = homeTeamScore !== null && awayTeamScore !== null
+    const gameFinished = 
+        match.homeTeamScore !== null && 
+        match.awayTeamScore !== null
 
     if (gameFinished) {
         return hunch?.won ? 'win' : 'lose'
@@ -57,7 +59,7 @@ const MatchCardWrapper = tailed('article')`
 `
 
 export function MatchCard({match, hunch, disabled}) {
-    const status = getCardStatus(match)
+    const status = getCardStatus(match, hunch)
     const teamsAreDefined = match.homeTeam && match.awayTeam
     
     const [ sendState, setSendState ] = useState('initial')
