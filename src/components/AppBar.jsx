@@ -40,7 +40,7 @@ function AppBarMenu() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/leaderboard">
+                    <Link to="/dashboard/leaderboard">
                         Classificação
                     </Link>
                 </li>
